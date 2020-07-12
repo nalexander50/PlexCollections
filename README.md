@@ -11,7 +11,7 @@ To see what the tool would do without applying changes, pass the `-d` or `--dry`
 
 # Dependencies
 
-Install dependencies with `pip``.
+Install dependencies with `pip`.
 
 `pip install -r requirements.txt`
 
