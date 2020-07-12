@@ -1,0 +1,33 @@
+# URL for Plex web application.
+# This will usually be an IP Address + Port (usually 32400)
+# May also be a local DNS name that redirects to the proper IP Address + Port
+# Cannot be https://app.plex.tv/desktop.
+plex_base_url: 192.168.1.1:32400
+
+# Auth token to allow changes to Plex.
+# Reference Plex Support Article "Finding an authentication token / X-Plex-Token"
+# Nobody knows how long an X-Plex-Token actually lasts. You may need to refresh it occasionally
+plex_auth_token: mySecretToken
+
+# Path to locally-mounted Plex drive.
+# At this path, you should find the Library folder, tmp_transcoding folder, files in various languages, and your custom library folders (e.g. Movies, 4K Movies, XXX Movies, TV Shows, etc.)
+# If drive is direct-attached to PC, this will be a standard path (ex: D:\MyPlexLibrary on Windows or /Volumes/MyPlexLibrary on macOS or /mnt/MyPlexLibrary on Linux)
+# If drive is network-attached to PC, the drive must be mounted. After being mounted, the drive can be located as a direct-attached as seen above.
+plex_mount_path: /my/mount/path
+
+# Host File System Plex Path Prefix
+# If Plex is being hosted on a server, this will be the server file system path leading to the Plex library
+# Reference the README for an easy guide on getting this value
+plex_builtin_fs_prefix: /nas1
+
+# List of your custom Plex libraries
+# For every collection in the specified section, the final collection tag will have the format prefix + tag + suffix.
+# Whitespace is not added. If whitespace is desired, you must use double-quotes as seen below.
+# Libraries not specified in the sections array are not processed.
+sections:
+  - section_name: "4K Movies"
+    collection_tag_prefix: null
+    collection_tag_suffix: " (4K)"
+  - section_name: Movies
+    collection_tag_prefix: "HD_"
+    collection_tag_suffix: null
