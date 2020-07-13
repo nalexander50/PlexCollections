@@ -18,7 +18,7 @@ def get_proper_collection_tags(movie, section, fs_prefix, plex_mount_path, secti
             section_config.collection_tag_prefix,
             section_config.collection_tag_suffix
         )
-        for tag.strip() in sorted(list(union))
+        for tag in sorted(list(union))
     ]
 
 
