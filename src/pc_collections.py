@@ -11,9 +11,15 @@ def get_proper_collection_tags(movie, section, fs_prefix, plex_mount_path, secti
     movie_dir_path = get_movie_directory_path(movie, fs_prefix, plex_mount_path)
     custom_collections = set(get_custom_collections_from_file(movie_dir_path, section_config))
     file_system_collections = set(get_file_system_collections(movie_dir_path, section, plex_mount_path, section_config))
-    union = list(custom_collections.union(file_system_collections))
-    union_sorted = sorted(list(union))
-    return union_sorted
+    union = custom_collections.union(file_system_collections)
+    return [
+        apply_tag_prefix_suffix(
+            tag,
+            section_config.collection_tag_prefix,
+            section_config.collection_tag_suffix
+        )
+        for tag.strip() in sorted(list(union))
+    ]
 
 
 def get_custom_collections_from_file(movie_dir, section_config):
@@ -22,10 +28,7 @@ def get_custom_collections_from_file(movie_dir, section_config):
         file_path = os.path.join(movie_dir, file_name)
         if os.path.exists(file_path):
             with open(file_path, 'r') as collections_file:
-                return [
-                    apply_tag_prefix_suffix(line, section_config.collection_tag_prefix, section_config.collection_tag_suffix)
-                    for line in collections_file
-                ]
+                return [line.strip() for line in collections_file]
     return []
 
 
@@ -37,11 +40,7 @@ def get_file_system_collections(movie_dir, section, plex_mount_path, section_con
     for c in split_full_path(plex_mount_path):
         if c in collections:
             collections.remove(c)
-    collections = [
-        apply_tag_prefix_suffix(collection, section_config.collection_tag_prefix, section_config.collection_tag_suffix)
-        for collection in collections
-    ]
-    return collections
+    return [collection.strip() for collection in collections]
 
 
 def apply_tag_prefix_suffix(line, prefix, suffix):
