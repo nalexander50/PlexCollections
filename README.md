@@ -114,7 +114,3 @@ This is probably confusing. The good news is, there are very easy steps to get t
 5. In the Files box, there is a long file path pointing to the binary video file on the Plex drive
 6. Copy everything BEFORE your custom library folder. Your library folder will probably be something like Movies, 4K Movies, XXX Movies, etc.
 7. Paste this value into `config.yml` as `plex_builtin_fs_prefix`
-
-# Known Issues
-
-1. Sometimes the tool will report that it removed Collection A and Collection B and then added Collection A and Collection B. Because the tags were the same, nothing should have been done. The tool should report this as Matching. This seems to happen most frequently -- if not exclusively -- to Collections.txt tags. Fortunately, the end result is still correct.

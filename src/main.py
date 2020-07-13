@@ -25,18 +25,6 @@ def main():
             proper_collection_tags = get_proper_collection_tags(movie, section, config.plex_builtin_fs_prefix, config.plex_mount_path, config_section)
             apply_collection_tags(movie, proper_collection_tags, log_depth=2, do_apply=not dry_run)
 
-    # section4KMovies = pms.library.section('4K Movies')
-    # for movie4K in section4KMovies.all():
-    #     log_message('Processing {0}'.format(movie4K.title), 0, prepend='\n\n')
-    #     proper_collection_tags = get_proper_collection_tags(movie4K, section4KMovies, config.plex_builtin_fs_prefix, config.plex_mount_path)
-    #     apply_collection_tags(movie4K, proper_collection_tags, log_depth=1)
-
-    # sectionMovies = pms.library.section('Movies')
-    # for movie in sectionMovies.all():
-    #     log_message('Processing {0}'.format(movie.title), 0, prepend='\n\n')
-    #     proper_collection_tags = get_proper_collection_tags(movie, sectionMovies, config.plex_builtin_fs_prefix, config.plex_mount_path)
-    #     apply_collection_tags(movie, proper_collection_tags, log_depth=1)
-
     log_message('Post-Apply Actions:', 0, prepend='\n\n')
     delete_empty_collections(pms, log_depth=1, do_apply=not dry_run)
 
